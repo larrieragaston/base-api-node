@@ -5,13 +5,15 @@ import onFinished from 'on-finished'
 import cors from 'cors'
 import Mongoose from 'mongoose'
 
-import { authentication, authorization } from '../components/authentication/middleware.js'
-import UserRouter from '../components/user/route.js'
-import StatusRouter from '../components/status/route.js'
-import AuthenticationRouter from '../components/authentication/route.js'
+import { authentication, authorization } from '../components/authentication/middleware'
+import UserRouter from '../components/user/route'
+import StatusRouter from '../components/status/route'
+import AuthenticationRouter from '../components/authentication/route'
+import { CustomConfig } from '../types/customConfig.types'
+import { Winston } from 'winston'
 
 class Server {
-  constructor(config, logger, database) {
+  constructor(config: CustomConfig, logger: Winston, database) {
     this.config = config
     this.logger = logger.child({ context: 'Server' })
     this.database = database

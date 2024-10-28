@@ -1,6 +1,6 @@
 import config from 'config'
-import logger from './logger.js'
-import BaseApi from './lib/baseApi.js'
+import logger from './logger'
+import BaseApi from './lib/baseApi'
 
 const baseApi = new BaseApi(config, logger)
 baseApi.BaseApi = BaseApi

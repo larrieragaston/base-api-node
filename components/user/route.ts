@@ -1,18 +1,21 @@
 import { Router } from 'express'
-const router = new Router()
 import bcrypt from 'bcrypt'
+import { NextFunction, Request, Response, Router as ExpressRouter } from 'express';
+import { CustomRequest } from '../../types/customRequest.types';
+
+const router = Router()
 
 router.get('/', getAllUsers)
 router.get('/:id', getUserById)
 router.post('/', createUser)
 router.put('/:id', updateUser)
 
-function toDate(input) {
+function toDate(input:string) {
   const [day, month, year] = input.split('/')
-  return new Date(year, month, day)
+  return new Date(Number(year), Number(month), Number(day))
 }
 
-async function getAllUsers(req, res, next) {
+async function getAllUsers(req: CustomRequest, res: Response, next: NextFunction) {
   req.logger.info('getAllUsers')
 
   if (!req.isAdmin()) {
@@ -27,7 +30,7 @@ async function getAllUsers(req, res, next) {
   }
 }
 
-async function getUserById(req, res, next) {
+async function getUserById(req: CustomRequest, res: Response, next: NextFunction) {
   req.logger.info('getUserById with id: ', req.params.id)
 
   if (!req.params.id) {
@@ -52,7 +55,7 @@ async function getUserById(req, res, next) {
   }
 }
 
-async function createUser(req, res, next) {
+async function createUser(req: CustomRequest, res: Response, next: NextFunction) {
   req.logger.info('createUser: ', req.body)
 
   if (!req.isAdmin()) {
@@ -80,7 +83,7 @@ async function createUser(req, res, next) {
   }
 }
 
-async function updateUser(req, res, next) {
+async function updateUser(req: CustomRequest, res: Response, next: NextFunction) {
   req.logger.info('updateUser with id: ', req.params.id)
 
   if (!req.params.id) {

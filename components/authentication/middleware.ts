@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import createError from 'http-errors'
 
-import publicKey from '../../lib/public-key.js'
+import publicKey from '../../lib/public-key'
 
 function getToken(req, next) {
   const TOKEN_REGEX = /^\s*Bearer\s+(\S+)/g

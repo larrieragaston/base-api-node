@@ -1,8 +1,16 @@
-import Server from './server.js'
-import Database from './database.js'
+import Server from './server'
+import Database from './database'
+import { CustomConfig } from '../types/customConfig.types'
+import { Winston } from 'winston';
+import { CustomDatabase } from '../types/customDatabase.types';
 
 class BaseApi {
-  constructor(config, logger) {
+  config: CustomConfig;
+  logger: Winston;
+  isRunning: boolean
+  database : CustomDatabase;
+
+  constructor(config: CustomConfig, logger:Winston) {
     this.config = config
     this.logger = logger.child({ context: 'BaseApi' })
     this.isRunning = false

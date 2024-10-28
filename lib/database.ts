@@ -1,9 +1,23 @@
 import { Mongoose } from 'mongoose'
-import UserSchema from '../components/user/schema.js'
-import RoleSchema from '../components/user/schema.js'
+import type { Mongoose as MongooseType } from 'mongoose'
+import UserSchema from '../components/user/schema'
+import RoleSchema from '../components/user/schema'
+import { CustomDatabase } from '../types/customDatabase.types';
+import { Winston } from 'winston';
+import { CustomConfig } from '../types/customConfig.types';
 
-class Database {
-  constructor(config, logger) {
+interface DatabaseType  {
+  config: CustomConfig;
+  logger: Winston;
+  mongoose : MongooseType;
+}
+
+class Database implements DatabaseType{
+  // config: CustomConfig;
+  // logger: Winston;
+  // mongoose : MongooseType;
+  
+  constructor(config: CustomConfig, logger: Winston) {
     this.config = config
     this.logger = logger.child({ context: 'Database' })
     this.logger.verbose('Creating mongoose instance')

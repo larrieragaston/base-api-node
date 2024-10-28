@@ -1,6 +1,6 @@
 import figlet from 'figlet'
 // import pkg from '../package.json'
-import program from '../index.js'
+import program from '../index'
 
 function start() {
   process.stdout.write('\n')
